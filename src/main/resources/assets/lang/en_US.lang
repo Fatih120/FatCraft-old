@@ -1,0 +1,17 @@
+tile.colored_bed_block.name=Colored Bed
+item.colored_bed.white.name=White Bed
+item.colored_bed.orange.name=Orange Bed
+item.colored_bed.magenta.name=Magenta Bed
+item.colored_bed.light_blue.name=Light Blue Bed
+item.colored_bed.yellow.name=Yellow Bed
+item.colored_bed.lime.name=Lime Bed
+item.colored_bed.pink.name=Pink Bed
+item.colored_bed.gray.name=Gray Bed
+item.colored_bed.silver.name=Light Gray Bed
+item.colored_bed.cyan.name=Cyan Bed
+item.colored_bed.purple.name=Purple Bed
+item.colored_bed.blue.name=Blue Bed
+item.colored_bed.brown.name=Brown Bed
+item.colored_bed.green.name=Green Bed
+item.colored_bed.red.name=Red Bed
+item.colored_bed.black.name=Black Beditem.colored_bed.name=item.colored_bed.name=colored_bedtile.colored_bed_block.name=ColoredBed
