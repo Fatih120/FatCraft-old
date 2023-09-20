@@ -21,3 +21,4 @@ eclipse/*
 .factorypath
 
 forge*changelog.txt
+/out/*
