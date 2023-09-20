@@ -24,8 +24,6 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
-
-import java.util.Iterator;
 import java.util.Random;
 
 public class BlockColoredBed extends BlockDirectional implements ITileEntityProvider {
@@ -56,9 +54,7 @@ public class BlockColoredBed extends BlockDirectional implements ITileEntityProv
      */
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int p_149727_6_, float side, float hitx, float hity) {
-        if (world.isRemote) {
-            return true;
-        } else {
+        if (!world.isRemote) {
             int i1 = world.getBlockMetadata(x, y, z);
 
             if (!isBlockHeadOfBed(i1)) {
@@ -76,11 +72,9 @@ public class BlockColoredBed extends BlockDirectional implements ITileEntityProv
             if (world.provider.canRespawnHere() && world.getBiomeGenForCoords(x, z) != BiomeGenBase.hell) {
                 if (func_149976_c(i1)) {
                     EntityPlayer entityplayer1 = null;
-                    @SuppressWarnings("rawtypes")
-                    Iterator iterator = world.playerEntities.iterator();
 
-                    while (iterator.hasNext()) {
-                        EntityPlayer entityplayer2 = (EntityPlayer) iterator.next();
+                    for (Object o : world.playerEntities) {
+                        EntityPlayer entityplayer2 = (EntityPlayer) o;
 
                         if (entityplayer2.isPlayerSleeping()) {
                             ChunkCoordinates chunkcoordinates = entityplayer2.playerLocation;
@@ -92,7 +86,7 @@ public class BlockColoredBed extends BlockDirectional implements ITileEntityProv
                     }
 
                     if (entityplayer1 != null) {
-                        player.addChatComponentMessage(new ChatComponentTranslation("tile.bed.occupied", new Object[0]));
+                        player.addChatComponentMessage(new ChatComponentTranslation("tile.bed.occupied"));
                         return true;
                     }
 
@@ -103,20 +97,15 @@ public class BlockColoredBed extends BlockDirectional implements ITileEntityProv
 
                 if (enumstatus == EntityPlayer.EnumStatus.OK) {
                     func_149979_a(world, x, y, z, true);
-                    return true;
                 } else {
                     if (enumstatus == EntityPlayer.EnumStatus.NOT_POSSIBLE_NOW) {
-                        player.addChatComponentMessage(new ChatComponentTranslation("tile.bed.noSleep", new Object[0]));
+                        player.addChatComponentMessage(new ChatComponentTranslation("tile.bed.noSleep"));
                     } else if (enumstatus == EntityPlayer.EnumStatus.NOT_SAFE) {
-                        player.addChatComponentMessage(new ChatComponentTranslation("tile.bed.notSafe", new Object[0]));
+                        player.addChatComponentMessage(new ChatComponentTranslation("tile.bed.notSafe"));
                     }
 
-                    return true;
                 }
             } else {
-                double d2 = (double) x + 0.5D;
-                double d0 = (double) y + 0.5D;
-                double d1 = (double) z + 0.5D;
                 world.setBlockToAir(x, y, z);
                 int k1 = getDirection(i1);
                 x += field_149981_a[k1][0];
@@ -124,16 +113,13 @@ public class BlockColoredBed extends BlockDirectional implements ITileEntityProv
 
                 if (world.getBlock(x, y, z) == this) {
                     world.setBlockToAir(x, y, z);
-                    d2 = (d2 + (double) x + 0.5D) / 2.0D;
-                    d0 = (d0 + (double) y + 0.5D) / 2.0D;
-                    d1 = (d1 + (double) z + 0.5D) / 2.0D;
                 }
 
-                world.newExplosion((Entity) null, (double) ((float) x + 0.5F), (double) ((float) y + 0.5F),
-                        (double) ((float) z + 0.5F), 5.0F, true, true);
-                return true;
+                world.newExplosion((Entity) null, (float) x + 0.5F, ((float) y + 0.5F),
+                         ((float) z + 0.5F), 5.0F, true, true);
             }
         }
+        return true;
     }
 
     @SideOnly(Side.CLIENT)
@@ -303,32 +289,6 @@ public class BlockColoredBed extends BlockDirectional implements ITileEntityProv
         }
 
         p_149979_0_.setBlockMetadataWithNotify(p_149979_1_, p_149979_2_, p_149979_3_, l, 4);
-    }
-
-    public static ChunkCoordinates func_149977_a(World p_149977_0_, int p_149977_1_, int p_149977_2_, int p_149977_3_, int p_149977_4_) {
-        int i1 = p_149977_0_.getBlockMetadata(p_149977_1_, p_149977_2_, p_149977_3_);
-        int j1 = BlockDirectional.getDirection(i1);
-
-        for (int k1 = 0; k1 <= 1; ++k1) {
-            int l1 = p_149977_1_ - field_149981_a[j1][0] * k1 - 1;
-            int i2 = p_149977_3_ - field_149981_a[j1][1] * k1 - 1;
-            int j2 = l1 + 2;
-            int k2 = i2 + 2;
-
-            for (int l2 = l1; l2 <= j2; ++l2) {
-                for (int i3 = i2; i3 <= k2; ++i3) {
-                    if (World.doesBlockHaveSolidTopSurface(p_149977_0_, l2, p_149977_2_ - 1, i3) && !p_149977_0_.getBlock(l2, p_149977_2_, i3).getMaterial().isOpaque() && !p_149977_0_.getBlock(l2, p_149977_2_ + 1, i3).getMaterial().isOpaque()) {
-                        if (p_149977_4_ <= 0) {
-                            return new ChunkCoordinates(l2, p_149977_2_, i3);
-                        }
-
-                        --p_149977_4_;
-                    }
-                }
-            }
-        }
-
-        return null;
     }
 
     /**
