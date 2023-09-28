@@ -9,7 +9,6 @@ public class ModBlocks
 {
 	// Blocks
 	public static Block colored_bed;
-	public static Block dollPlaced;
 
 
 	/** Instantiates and registers all mod blocks. */
@@ -17,7 +16,5 @@ public class ModBlocks
 	{
 		colored_bed = new BlockColoredBed();
 		RegisterHelper.registerBlock(colored_bed);
-		dollPlaced = new BlockDoll();
-		RegisterHelper.registerBlock(dollPlaced);
 	}
 }

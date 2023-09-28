@@ -11,8 +11,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.mof.fatcraft.handlers.Config;
-import com.mof.fatcraft.handlers.GenericEventHandler;
-import com.mof.fatcraft.network.packets.ExamplePacket;
 import com.mof.fatcraft.proxy.CommonProxy;
 import com.mof.fatcraft.block.ModBlocks;
 import com.mof.fatcraft.item.ModItems;
@@ -59,12 +57,6 @@ public class Fatcraft {
     public void preInit(FMLPreInitializationEvent event) {
         Config.load(event);
 
-        packetHandler = NetworkRegistry.INSTANCE.newSimpleChannel("ExampleModChannel");
-        packetHandler.registerMessage(ExamplePacket.Handler.class, ExamplePacket.class, 1, Side.CLIENT);
-
-        GenericEventHandler handler = new GenericEventHandler();
-        MinecraftForge.EVENT_BUS.register(handler);
-        FMLCommonHandler.instance().bus().register(handler);
 
         ModBlocks.registerModBlocks();
         ModItems.registerModItems();

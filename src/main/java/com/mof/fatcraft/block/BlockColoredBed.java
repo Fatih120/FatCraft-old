@@ -369,16 +369,4 @@ public class BlockColoredBed extends BlockDirectional implements ITileEntityProv
         return this == ModBlocks.colored_bed;
     }
 
-    public void jump(Entity entity) {
-        entity.motionY = 0.0F;
-        entity.fallDistance = -0.5F;
-        entity.addVelocity(0.0F, 0.5F, 0.0F);
-
-    }
-
-    @Override
-    public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
-        if (entity.isCollidedVertically && (entity.posY > y) && (!entity.isSneaking()))
-            jump(entity);
-    }
 }
