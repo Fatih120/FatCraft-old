@@ -14,4 +14,7 @@ item.colored_bed.blue.name=Blue Bed
 item.colored_bed.brown.name=Brown Bed
 item.colored_bed.green.name=Green Bed
 item.colored_bed.red.name=Red Bed
-item.colored_bed.black.name=Black Beditem.colored_bed.name=item.colored_bed.name=colored_bedtile.colored_bed_block.name=ColoredBed
+item.colored_bed.black.name=Black Bed
+item.cured_rotten_flesh.name=Cured Rotten Flesh
+
+itemGroup.FatCraft=FatCraft

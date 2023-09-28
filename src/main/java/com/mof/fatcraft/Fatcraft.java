@@ -67,7 +67,7 @@ public class Fatcraft {
     }
 
 
-    public static CreativeTabs tabExampleMod = new CreativeTabs("FatCraft") {
+    public static CreativeTabs tabFatCraft = new CreativeTabs("FatCraft") {
         @Override
         @SideOnly(Side.CLIENT)
         public Item getTabIconItem() {

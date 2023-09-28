@@ -11,6 +11,7 @@ public class ModItems
 {
 	// Items (Miscellaneous)
 	public static Item colored_bed;
+	public static Item cured_rotten_flesh;
 	public static Item doll_patchouli;
 	public static Item doll_kitty;
 
@@ -19,7 +20,9 @@ public class ModItems
 		colored_bed = new ItemColoredBed();
 		//doll_patchouli = new ItemDollPatchouli();
 		//doll_kitty = new ItemDollKitty();
+		cured_rotten_flesh = new ItemCuredFlesh();
 		RegisterHelper.registerItem(colored_bed);
+		RegisterHelper.registerItem(cured_rotten_flesh);
 		//RegisterHelper.registerItem(doll_patchouli);
 		//RegisterHelper.registerItem(doll_kitty);
 	}
