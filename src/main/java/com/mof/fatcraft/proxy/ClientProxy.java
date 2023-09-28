@@ -2,8 +2,10 @@ package com.mof.fatcraft.proxy;
 
 import java.util.UUID;
 
-import com.mof.fatcraft.block.RendererTEBlockDoll;
+import com.mof.fatcraft.client.renderer.TEBedRender;
+import com.mof.fatcraft.client.renderer.TEDollRender;
 import com.mof.fatcraft.tileentity.TileEntityBlockDoll;
+import com.mof.fatcraft.tileentity.TileEntityColoredBed;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
@@ -29,7 +31,8 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void registerRenderers() {
         // NO-OP
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBlockDoll.class, new RendererTEBlockDoll());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBlockDoll.class, new TEDollRender());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityColoredBed.class, new TEBedRender());
     }
 
     @Override

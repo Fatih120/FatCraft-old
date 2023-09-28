@@ -17,10 +17,10 @@ public class ModItems
 	public static void registerModItems()
 	{
 		colored_bed = new ItemColoredBed();
-		doll_patchouli = new ItemDollPatchouli();
-		doll_kitty = new ItemDollKitty();
+		//doll_patchouli = new ItemDollPatchouli();
+		//doll_kitty = new ItemDollKitty();
 		RegisterHelper.registerItem(colored_bed);
-		RegisterHelper.registerItem(doll_patchouli);
-		RegisterHelper.registerItem(doll_kitty);
+		//RegisterHelper.registerItem(doll_patchouli);
+		//RegisterHelper.registerItem(doll_kitty);
 	}
 }

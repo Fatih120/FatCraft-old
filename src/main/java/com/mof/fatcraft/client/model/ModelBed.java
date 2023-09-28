@@ -35,10 +35,10 @@ public class ModelBed extends ModelBase {
         this.legs[3].rotateAngleZ = (float)Math.PI;
     }
 
-    public int getModelVer()
-    {
-        return 51;
-    }
+//    public int getModelVer()
+//    {
+//        return 51;
+//    }
 
     public void bedRender()
     {

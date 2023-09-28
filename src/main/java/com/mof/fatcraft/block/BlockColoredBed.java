@@ -44,8 +44,8 @@ public class BlockColoredBed extends BlockDirectional implements ITileEntityProv
         this.setBlockName("colored_bed_block");
         this.disableStats();
         //new ResourceLocation(Fatcraft.MODID + ":textures/blocks/beds/")
-        //        this.setBlockTextureName("fatcraft:" + getUnlocalizedName().substring(5));
         this.setBlockTextureName("fatcraft:" + getUnlocalizedName().substring(5));
+//      this.setBlockTextureName("fatcraft:" + getUnlocalizedName().substring(5));
         this.isBlockContainer = true;
     }
 
@@ -145,60 +145,60 @@ public class BlockColoredBed extends BlockDirectional implements ITileEntityProv
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void registerBlockIcons(IIconRegister par1IconRegister) {
+    public void registerBlockIcons(IIconRegister reg) {
         this.blockIcon = Blocks.planks.getBlockTextureFromSide(0);
-        IIcon head_end = par1IconRegister.registerIcon(this.getTextureName() + "_head_end");
+        IIcon head_end = reg.registerIcon(this.getTextureName() + "_head_end");
         this.bedTopIcons = new IIcon[][]{
-                new IIcon[]{par1IconRegister.registerIcon(this.getTextureName() + "_feet_top_white"), par1IconRegister.registerIcon(this.getTextureName() + "_head_top_white")},
-                new IIcon[]{par1IconRegister.registerIcon(this.getTextureName() + "_feet_top_orange"), par1IconRegister.registerIcon(this.getTextureName() + "_head_top_orange")},
-                new IIcon[]{par1IconRegister.registerIcon(this.getTextureName() + "_feet_top_magenta"), par1IconRegister.registerIcon(this.getTextureName() + "_head_top_magenta")},
-                new IIcon[]{par1IconRegister.registerIcon(this.getTextureName() + "_feet_top_light_blue"), par1IconRegister.registerIcon(this.getTextureName() + "_head_top_light_blue")},
-                new IIcon[]{par1IconRegister.registerIcon(this.getTextureName() + "_feet_top_yellow"), par1IconRegister.registerIcon(this.getTextureName() + "_head_top_yellow")},
-                new IIcon[]{par1IconRegister.registerIcon(this.getTextureName() + "_feet_top_lime"), par1IconRegister.registerIcon(this.getTextureName() + "_head_top_lime")},
-                new IIcon[]{par1IconRegister.registerIcon(this.getTextureName() + "_feet_top_pink"), par1IconRegister.registerIcon(this.getTextureName() + "_head_top_pink")},
-                new IIcon[]{par1IconRegister.registerIcon(this.getTextureName() + "_feet_top_gray"), par1IconRegister.registerIcon(this.getTextureName() + "_head_top_gray")},
-                new IIcon[]{par1IconRegister.registerIcon(this.getTextureName() + "_feet_top_silver"), par1IconRegister.registerIcon(this.getTextureName() + "_head_top_silver")},
-                new IIcon[]{par1IconRegister.registerIcon(this.getTextureName() + "_feet_top_cyan"), par1IconRegister.registerIcon(this.getTextureName() + "_head_top_cyan")},
-                new IIcon[]{par1IconRegister.registerIcon(this.getTextureName() + "_feet_top_purple"), par1IconRegister.registerIcon(this.getTextureName() + "_head_top_purple")},
-                new IIcon[]{par1IconRegister.registerIcon(this.getTextureName() + "_feet_top_blue"), par1IconRegister.registerIcon(this.getTextureName() + "_head_top_blue")},
-                new IIcon[]{par1IconRegister.registerIcon(this.getTextureName() + "_feet_top_brown"), par1IconRegister.registerIcon(this.getTextureName() + "_head_top_brown")},
-                new IIcon[]{par1IconRegister.registerIcon(this.getTextureName() + "_feet_top_green"), par1IconRegister.registerIcon(this.getTextureName() + "_head_top_green")},
-                new IIcon[]{par1IconRegister.registerIcon(this.getTextureName() + "_feet_top_red"), par1IconRegister.registerIcon(this.getTextureName() + "_head_top_red")},
-                new IIcon[]{par1IconRegister.registerIcon(this.getTextureName() + "_feet_top_black"), par1IconRegister.registerIcon(this.getTextureName() + "_head_top_black")}};
+                new IIcon[]{reg.registerIcon(this.getTextureName() + "_feet_top_white"), reg.registerIcon(this.getTextureName() + "_head_top_white")},
+                new IIcon[]{reg.registerIcon(this.getTextureName() + "_feet_top_orange"), reg.registerIcon(this.getTextureName() + "_head_top_orange")},
+                new IIcon[]{reg.registerIcon(this.getTextureName() + "_feet_top_magenta"), reg.registerIcon(this.getTextureName() + "_head_top_magenta")},
+                new IIcon[]{reg.registerIcon(this.getTextureName() + "_feet_top_light_blue"), reg.registerIcon(this.getTextureName() + "_head_top_light_blue")},
+                new IIcon[]{reg.registerIcon(this.getTextureName() + "_feet_top_yellow"), reg.registerIcon(this.getTextureName() + "_head_top_yellow")},
+                new IIcon[]{reg.registerIcon(this.getTextureName() + "_feet_top_lime"), reg.registerIcon(this.getTextureName() + "_head_top_lime")},
+                new IIcon[]{reg.registerIcon(this.getTextureName() + "_feet_top_pink"), reg.registerIcon(this.getTextureName() + "_head_top_pink")},
+                new IIcon[]{reg.registerIcon(this.getTextureName() + "_feet_top_gray"), reg.registerIcon(this.getTextureName() + "_head_top_gray")},
+                new IIcon[]{reg.registerIcon(this.getTextureName() + "_feet_top_silver"), reg.registerIcon(this.getTextureName() + "_head_top_silver")},
+                new IIcon[]{reg.registerIcon(this.getTextureName() + "_feet_top_cyan"), reg.registerIcon(this.getTextureName() + "_head_top_cyan")},
+                new IIcon[]{reg.registerIcon(this.getTextureName() + "_feet_top_purple"), reg.registerIcon(this.getTextureName() + "_head_top_purple")},
+                new IIcon[]{reg.registerIcon(this.getTextureName() + "_feet_top_blue"), reg.registerIcon(this.getTextureName() + "_head_top_blue")},
+                new IIcon[]{reg.registerIcon(this.getTextureName() + "_feet_top_brown"), reg.registerIcon(this.getTextureName() + "_head_top_brown")},
+                new IIcon[]{reg.registerIcon(this.getTextureName() + "_feet_top_green"), reg.registerIcon(this.getTextureName() + "_head_top_green")},
+                new IIcon[]{reg.registerIcon(this.getTextureName() + "_feet_top_red"), reg.registerIcon(this.getTextureName() + "_head_top_red")},
+                new IIcon[]{reg.registerIcon(this.getTextureName() + "_feet_top_black"), reg.registerIcon(this.getTextureName() + "_head_top_black")}};
         this.bedEndIcons = new IIcon[][]{
-                new IIcon[]{par1IconRegister.registerIcon(this.getTextureName() + "_feet_end_white"), head_end},
-                new IIcon[]{par1IconRegister.registerIcon(this.getTextureName() + "_feet_end_orange"), head_end},
-                new IIcon[]{par1IconRegister.registerIcon(this.getTextureName() + "_feet_end_magenta"), head_end},
-                new IIcon[]{par1IconRegister.registerIcon(this.getTextureName() + "_feet_end_light_blue"), head_end},
-                new IIcon[]{par1IconRegister.registerIcon(this.getTextureName() + "_feet_end_yellow"), head_end},
-                new IIcon[]{par1IconRegister.registerIcon(this.getTextureName() + "_feet_end_lime"), head_end},
-                new IIcon[]{par1IconRegister.registerIcon(this.getTextureName() + "_feet_end_pink"), head_end},
-                new IIcon[]{par1IconRegister.registerIcon(this.getTextureName() + "_feet_end_gray"), head_end},
-                new IIcon[]{par1IconRegister.registerIcon(this.getTextureName() + "_feet_end_silver"), head_end},
-                new IIcon[]{par1IconRegister.registerIcon(this.getTextureName() + "_feet_end_cyan"), head_end},
-                new IIcon[]{par1IconRegister.registerIcon(this.getTextureName() + "_feet_end_purple"), head_end},
-                new IIcon[]{par1IconRegister.registerIcon(this.getTextureName() + "_feet_end_blue"), head_end},
-                new IIcon[]{par1IconRegister.registerIcon(this.getTextureName() + "_feet_end_brown"), head_end},
-                new IIcon[]{par1IconRegister.registerIcon(this.getTextureName() + "_feet_end_green"), head_end},
-                new IIcon[]{par1IconRegister.registerIcon(this.getTextureName() + "_feet_end_red"), head_end},
-                new IIcon[]{par1IconRegister.registerIcon(this.getTextureName() + "_feet_end_black"), head_end}};
+                new IIcon[]{reg.registerIcon(this.getTextureName() + "_feet_end_white"), head_end},
+                new IIcon[]{reg.registerIcon(this.getTextureName() + "_feet_end_orange"), head_end},
+                new IIcon[]{reg.registerIcon(this.getTextureName() + "_feet_end_magenta"), head_end},
+                new IIcon[]{reg.registerIcon(this.getTextureName() + "_feet_end_light_blue"), head_end},
+                new IIcon[]{reg.registerIcon(this.getTextureName() + "_feet_end_yellow"), head_end},
+                new IIcon[]{reg.registerIcon(this.getTextureName() + "_feet_end_lime"), head_end},
+                new IIcon[]{reg.registerIcon(this.getTextureName() + "_feet_end_pink"), head_end},
+                new IIcon[]{reg.registerIcon(this.getTextureName() + "_feet_end_gray"), head_end},
+                new IIcon[]{reg.registerIcon(this.getTextureName() + "_feet_end_silver"), head_end},
+                new IIcon[]{reg.registerIcon(this.getTextureName() + "_feet_end_cyan"), head_end},
+                new IIcon[]{reg.registerIcon(this.getTextureName() + "_feet_end_purple"), head_end},
+                new IIcon[]{reg.registerIcon(this.getTextureName() + "_feet_end_blue"), head_end},
+                new IIcon[]{reg.registerIcon(this.getTextureName() + "_feet_end_brown"), head_end},
+                new IIcon[]{reg.registerIcon(this.getTextureName() + "_feet_end_green"), head_end},
+                new IIcon[]{reg.registerIcon(this.getTextureName() + "_feet_end_red"), head_end},
+                new IIcon[]{reg.registerIcon(this.getTextureName() + "_feet_end_black"), head_end}};
         this.bedSideIcons = new IIcon[][]{
-                new IIcon[]{par1IconRegister.registerIcon(this.getTextureName() + "_feet_side_white"), par1IconRegister.registerIcon(this.getTextureName() + "_head_side_white")},
-                new IIcon[]{par1IconRegister.registerIcon(this.getTextureName() + "_feet_side_orange"), par1IconRegister.registerIcon(this.getTextureName() + "_head_side_orange")},
-                new IIcon[]{par1IconRegister.registerIcon(this.getTextureName() + "_feet_side_magenta"), par1IconRegister.registerIcon(this.getTextureName() + "_head_side_magenta")},
-                new IIcon[]{par1IconRegister.registerIcon(this.getTextureName() + "_feet_side_light_blue"), par1IconRegister.registerIcon(this.getTextureName() + "_head_side_light_blue")},
-                new IIcon[]{par1IconRegister.registerIcon(this.getTextureName() + "_feet_side_yellow"), par1IconRegister.registerIcon(this.getTextureName() + "_head_side_yellow")},
-                new IIcon[]{par1IconRegister.registerIcon(this.getTextureName() + "_feet_side_lime"), par1IconRegister.registerIcon(this.getTextureName() + "_head_side_lime")},
-                new IIcon[]{par1IconRegister.registerIcon(this.getTextureName() + "_feet_side_pink"), par1IconRegister.registerIcon(this.getTextureName() + "_head_side_pink")},
-                new IIcon[]{par1IconRegister.registerIcon(this.getTextureName() + "_feet_side_gray"), par1IconRegister.registerIcon(this.getTextureName() + "_head_side_gray")},
-                new IIcon[]{par1IconRegister.registerIcon(this.getTextureName() + "_feet_side_silver"), par1IconRegister.registerIcon(this.getTextureName() + "_head_side_silver")},
-                new IIcon[]{par1IconRegister.registerIcon(this.getTextureName() + "_feet_side_cyan"), par1IconRegister.registerIcon(this.getTextureName() + "_head_side_cyan")},
-                new IIcon[]{par1IconRegister.registerIcon(this.getTextureName() + "_feet_side_purple"), par1IconRegister.registerIcon(this.getTextureName() + "_head_side_purple")},
-                new IIcon[]{par1IconRegister.registerIcon(this.getTextureName() + "_feet_side_blue"), par1IconRegister.registerIcon(this.getTextureName() + "_head_side_blue")},
-                new IIcon[]{par1IconRegister.registerIcon(this.getTextureName() + "_feet_side_brown"), par1IconRegister.registerIcon(this.getTextureName() + "_head_side_brown")},
-                new IIcon[]{par1IconRegister.registerIcon(this.getTextureName() + "_feet_side_green"), par1IconRegister.registerIcon(this.getTextureName() + "_head_side_green")},
-                new IIcon[]{par1IconRegister.registerIcon(this.getTextureName() + "_feet_side_red"), par1IconRegister.registerIcon(this.getTextureName() + "_head_side_red")},
-                new IIcon[]{par1IconRegister.registerIcon(this.getTextureName() + "_feet_side_black"), par1IconRegister.registerIcon(this.getTextureName() + "_head_side_black")}};
+                new IIcon[]{reg.registerIcon(this.getTextureName() + "_feet_side_white"), reg.registerIcon(this.getTextureName() + "_head_side_white")},
+                new IIcon[]{reg.registerIcon(this.getTextureName() + "_feet_side_orange"), reg.registerIcon(this.getTextureName() + "_head_side_orange")},
+                new IIcon[]{reg.registerIcon(this.getTextureName() + "_feet_side_magenta"), reg.registerIcon(this.getTextureName() + "_head_side_magenta")},
+                new IIcon[]{reg.registerIcon(this.getTextureName() + "_feet_side_light_blue"), reg.registerIcon(this.getTextureName() + "_head_side_light_blue")},
+                new IIcon[]{reg.registerIcon(this.getTextureName() + "_feet_side_yellow"), reg.registerIcon(this.getTextureName() + "_head_side_yellow")},
+                new IIcon[]{reg.registerIcon(this.getTextureName() + "_feet_side_lime"), reg.registerIcon(this.getTextureName() + "_head_side_lime")},
+                new IIcon[]{reg.registerIcon(this.getTextureName() + "_feet_side_pink"), reg.registerIcon(this.getTextureName() + "_head_side_pink")},
+                new IIcon[]{reg.registerIcon(this.getTextureName() + "_feet_side_gray"), reg.registerIcon(this.getTextureName() + "_head_side_gray")},
+                new IIcon[]{reg.registerIcon(this.getTextureName() + "_feet_side_silver"), reg.registerIcon(this.getTextureName() + "_head_side_silver")},
+                new IIcon[]{reg.registerIcon(this.getTextureName() + "_feet_side_cyan"), reg.registerIcon(this.getTextureName() + "_head_side_cyan")},
+                new IIcon[]{reg.registerIcon(this.getTextureName() + "_feet_side_purple"), reg.registerIcon(this.getTextureName() + "_head_side_purple")},
+                new IIcon[]{reg.registerIcon(this.getTextureName() + "_feet_side_blue"), reg.registerIcon(this.getTextureName() + "_head_side_blue")},
+                new IIcon[]{reg.registerIcon(this.getTextureName() + "_feet_side_brown"), reg.registerIcon(this.getTextureName() + "_head_side_brown")},
+                new IIcon[]{reg.registerIcon(this.getTextureName() + "_feet_side_green"), reg.registerIcon(this.getTextureName() + "_head_side_green")},
+                new IIcon[]{reg.registerIcon(this.getTextureName() + "_feet_side_red"), reg.registerIcon(this.getTextureName() + "_head_side_red")},
+                new IIcon[]{reg.registerIcon(this.getTextureName() + "_feet_side_black"), reg.registerIcon(this.getTextureName() + "_head_side_black")}};
     }
 
     /**
