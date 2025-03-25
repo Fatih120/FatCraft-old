@@ -1,0 +1,16 @@
+[
+  {
+    "modid": "conveyorblocks",
+    "name": "Conveyor Blocks",
+    "description": "",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "url": "",
+    "updateUrl": "",
+    "authorList": [],
+    "credits": "",
+    "logoFile": "",
+    "screenshots": [],
+    "dependencies": []
+  }
+]
