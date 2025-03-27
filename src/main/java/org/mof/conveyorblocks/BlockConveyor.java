@@ -2,11 +2,12 @@ package org.mof.conveyorblocks;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockAir;
 import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.particle.EntityFX;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -20,29 +21,43 @@ final public class BlockConveyor extends BlockDirectional {
 
   private BlockConveyor() {
     super(Material.iron);
-    this.setBlockName(NAME);
-    this.setBlockTextureName(MOD_ID + ":" + NAME);
-    this.setCreativeTab(CreativeTabs.tabRedstone);
+    setBlockName(NAME);
+    setBlockTextureName(MOD_ID + ":" + NAME);
+    setCreativeTab(CreativeTabs.tabRedstone);
+    maxY = 0.1;
   }
   @Override
   public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack itemStack) {
     // taken from BlockPumpkin::onBlockPlacedBy
-    int l = MathHelper.floor_double(entity.rotationYaw * 4 / 360 + 2.5) % 4;
-    world.setBlockMetadataWithNotify(x, y, z, l, 2);
-  }
-  @Override
-  public int onBlockPlaced(World world, int x, int y, int z, int facing, float hitX, float hitY, float hitZ, int meta) {
-    if (world.getBlock(x, y + 1, z) instanceof BlockAir)
-      world.setBlock(x, y + 1, z, BlockConviation.INSTANCE);
-    return super.onBlockPlaced(world, x, y, z, facing, hitX, hitY, hitZ, meta);
+    int direction = MathHelper.floor_double(entity.rotationYaw * 4 / 360 + 2.5) % 4;
+    world.setBlockMetadataWithNotify(x, y, z, direction, 2);
   }
   @Override
   public void onNeighborBlockChange(World world, int x, int y, int z, Block block) {
-    if (world.getBlock(x, y + 1, z) instanceof BlockAir)
-      world.setBlock(x, y + 1, z, BlockConviation.INSTANCE);
+    if (!canBlockStay(world, x, y, z)) {
+      dropBlockAsItem(world, x, y, z, 0, 0);
+      world.setBlockToAir(x, y, z);
+    }
   }
-  public static int getDirection(World world, int x, int y, int z) {
-    return world.getBlockMetadata(x, y, z) % 4;
+  @Override
+  public boolean canBlockStay(World world, int x, int y, int z) {
+    return !world.isAirBlock(x, y - 1, z);
+  }
+  @Override
+  public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
+    if (!entity.onGround || entity instanceof EntityFX)
+      return;
+
+    int direction = world.getBlockMetadata(x, y, z) % 4;
+    double dx = 0, dy = 0, dz = 0;
+    double d = 0.1; // multiplier
+    switch (direction) {
+      case 0: dz = d; break; // north
+      case 1: dx = -d; break; // east
+      case 2: dz = -d; break; // south
+      case 3: dx = d; break; // west
+    }
+    entity.addVelocity(dx, dy, dz);
   }
 
   private IIcon frontIcon; 
@@ -52,22 +67,30 @@ final public class BlockConveyor extends BlockDirectional {
 
   @Override @SideOnly(Side.CLIENT)
   public void registerBlockIcons(IIconRegister iconRegister) {
-    this.frontIcon = iconRegister.registerIcon(this.getTextureName() + "_front");
-    this.sideIcon = iconRegister.registerIcon(this.getTextureName() + "_side");
-    this.topIcon = this.sideIcon;
-    this.bottomIcon = iconRegister.registerIcon(this.getTextureName() + "_bottom");
-    this.blockIcon = this.sideIcon;
+    frontIcon = iconRegister.registerIcon(getTextureName() + "_front");
+    sideIcon = iconRegister.registerIcon(getTextureName() + "_side");
+    topIcon = sideIcon;
+    bottomIcon = iconRegister.registerIcon(getTextureName() + "_bottom");
+    blockIcon = sideIcon;
   }
   @Override @SideOnly(Side.CLIENT)
   public IIcon getIcon(int unkA, int unkB) {
     // based on BlockPumpkin::getIcon
     // TODO: fix this
-    return unkA == 1 ? this.topIcon :
-           unkA == 0 ? this.bottomIcon :
-           unkB == 2 && unkA == 2 ? this.frontIcon :
-           unkB == 3 && unkA == 5 ? this.frontIcon :
-           unkB == 0 && unkA == 3 ? this.frontIcon :
-           unkB == 1 && unkA == 4 ? this.frontIcon :
-           this.sideIcon;
+    return unkA == 1 ? topIcon :
+           unkA == 0 ? bottomIcon :
+           unkB == 2 && unkA == 2 ? frontIcon :
+           unkB == 3 && unkA == 5 ? frontIcon :
+           unkB == 0 && unkA == 3 ? frontIcon :
+           unkB == 1 && unkA == 4 ? frontIcon :
+           sideIcon;
+  }
+  @Override
+  public boolean isOpaqueCube() {
+    return false;
+  }
+  @Override
+  public boolean renderAsNormalBlock() {
+    return false;
   }
 }

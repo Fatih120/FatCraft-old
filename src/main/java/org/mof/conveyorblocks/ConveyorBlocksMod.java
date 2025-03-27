@@ -17,6 +17,5 @@ final public class ConveyorBlocksMod {
   @EventHandler
   public void preInit(FMLPreInitializationEvent event) {
     GameRegistry.registerBlock(BlockConveyor.INSTANCE, BlockConveyor.NAME);
-    GameRegistry.registerBlock(BlockConviation.INSTANCE, BlockConviation.NAME);
   }
 }
