@@ -1,6 +1,8 @@
 package org.mof.conveyorblocks;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockAir;
 import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -12,11 +14,14 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import static org.mof.conveyorblocks.ConveyorBlocksMod.MOD_ID;
 
-public class BlockConveyor extends BlockDirectional {
-  public BlockConveyor() {
+final public class BlockConveyor extends BlockDirectional {
+  final public static String NAME = "conveyor";
+  final public static BlockConveyor INSTANCE = new BlockConveyor();
+
+  private BlockConveyor() {
     super(Material.iron);
-    this.setBlockName("conveyor");
-    this.setBlockTextureName(MOD_ID + ":" + "conveyor");
+    this.setBlockName(NAME);
+    this.setBlockTextureName(MOD_ID + ":" + NAME);
     this.setCreativeTab(CreativeTabs.tabRedstone);
   }
   @Override
@@ -25,7 +30,21 @@ public class BlockConveyor extends BlockDirectional {
     int l = MathHelper.floor_double(entity.rotationYaw * 4 / 360 + 2.5) % 4;
     world.setBlockMetadataWithNotify(x, y, z, l, 2);
   }
-  
+  @Override
+  public int onBlockPlaced(World world, int x, int y, int z, int facing, float hitX, float hitY, float hitZ, int meta) {
+    if (world.getBlock(x, y + 1, z) instanceof BlockAir)
+      world.setBlock(x, y + 1, z, BlockConviation.INSTANCE);
+    return super.onBlockPlaced(world, x, y, z, facing, hitX, hitY, hitZ, meta);
+  }
+  @Override
+  public void onNeighborBlockChange(World world, int x, int y, int z, Block block) {
+    if (world.getBlock(x, y + 1, z) instanceof BlockAir)
+      world.setBlock(x, y + 1, z, BlockConviation.INSTANCE);
+  }
+  public static int getDirection(World world, int x, int y, int z) {
+    return world.getBlockMetadata(x, y, z) % 4;
+  }
+
   private IIcon frontIcon; 
   private IIcon sideIcon;
   private IIcon topIcon;
