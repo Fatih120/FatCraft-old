@@ -21,10 +21,10 @@ final public class BlockConveyor extends BlockDirectional {
 
   private BlockConveyor() {
     super(Material.iron);
-    setBlockName(NAME);
-    setBlockTextureName(MOD_ID + ":" + NAME);
-    setCreativeTab(CreativeTabs.tabRedstone);
-    maxY = 0.1;
+    this.setBlockName(NAME);
+    this.setBlockTextureName(MOD_ID + ":" + NAME);
+    this.setBlockBounds(0, 0, 0, 1, 0.0625F, 1);
+    this.setCreativeTab(CreativeTabs.tabRedstone);
   }
   @Override
   public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack itemStack) {
@@ -52,38 +52,30 @@ final public class BlockConveyor extends BlockDirectional {
     double dx = 0, dy = 0, dz = 0;
     double d = 0.1; // multiplier
     switch (direction) {
-      case 0: dz = d; break; // north
-      case 1: dx = -d; break; // east
-      case 2: dz = -d; break; // south
-      case 3: dx = d; break; // west
+      case 0: dz = d; break; // south
+      case 1: dx = -d; break; // west
+      case 2: dz = -d; break; // north
+      case 3: dx = d; break; // east
     }
     entity.addVelocity(dx, dy, dz);
   }
 
-  private IIcon frontIcon; 
-  private IIcon sideIcon;
-  private IIcon topIcon;
-  private IIcon bottomIcon;
+  @SideOnly(Side.CLIENT)
+  private IIcon[] icons;
 
   @Override @SideOnly(Side.CLIENT)
   public void registerBlockIcons(IIconRegister iconRegister) {
-    frontIcon = iconRegister.registerIcon(getTextureName() + "_front");
-    sideIcon = iconRegister.registerIcon(getTextureName() + "_side");
-    topIcon = sideIcon;
-    bottomIcon = iconRegister.registerIcon(getTextureName() + "_bottom");
-    blockIcon = sideIcon;
+    this.icons = new IIcon[] {
+      iconRegister.registerIcon(getTextureName() + "_south"),
+      iconRegister.registerIcon(getTextureName() + "_west"),
+      iconRegister.registerIcon(getTextureName() + "_north"),
+      iconRegister.registerIcon(getTextureName() + "_east"),
+    };
+    this.blockIcon = this.icons[3];
   }
   @Override @SideOnly(Side.CLIENT)
-  public IIcon getIcon(int unkA, int unkB) {
-    // based on BlockPumpkin::getIcon
-    // TODO: fix this
-    return unkA == 1 ? topIcon :
-           unkA == 0 ? bottomIcon :
-           unkB == 2 && unkA == 2 ? frontIcon :
-           unkB == 3 && unkA == 5 ? frontIcon :
-           unkB == 0 && unkA == 3 ? frontIcon :
-           unkB == 1 && unkA == 4 ? frontIcon :
-           sideIcon;
+  public IIcon getIcon(int side, int meta) {
+    return this.icons[meta % 4];
   }
   @Override
   public boolean isOpaqueCube() {
