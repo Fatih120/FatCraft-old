@@ -28,20 +28,23 @@ final public class BlockConveyor extends BlockDirectional {
   }
   @Override
   public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack itemStack) {
-    // taken from BlockPumpkin::onBlockPlacedBy
     int direction = MathHelper.floor_double(entity.rotationYaw * 4 / 360 + 2.5) % 4;
     world.setBlockMetadataWithNotify(x, y, z, direction, 2);
   }
   @Override
+  public boolean canBlockStay(World world, int x, int y, int z) {
+    return !world.isAirBlock(x, y - 1, z);
+  }
+  @Override
   public void onNeighborBlockChange(World world, int x, int y, int z, Block block) {
-    if (!canBlockStay(world, x, y, z)) {
-      dropBlockAsItem(world, x, y, z, 0, 0);
+    if (!this.canBlockStay(world, x, y, z)) {
+      this.dropBlockAsItem(world, x, y, z, 0, 0);
       world.setBlockToAir(x, y, z);
     }
   }
   @Override
-  public boolean canBlockStay(World world, int x, int y, int z) {
-    return !world.isAirBlock(x, y - 1, z);
+  public boolean canPlaceBlockAt(World world, int x, int y, int z) {
+    return super.canPlaceBlockAt(world, x, y, z) && this.canBlockStay(world, x, y, z);
   }
   @Override
   public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
